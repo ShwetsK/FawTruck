@@ -38,9 +38,23 @@ export default function TruckModelsCarousel() {
     autoplaySpeed: 3000,
     responsive: [
       {
-        breakpoint: 768, // For devices below 768px (mobile view)
+        breakpoint: 1024, // For desktop
         settings: {
-          slidesToShow: 1, // Show one slide at a time
+          slidesToShow: 3, // Show 3 slides at a time on desktop
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768, // For tablets and smaller devices
+        settings: {
+          slidesToShow: 2, // Show 2 slides at a time on tablets
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480, // For mobile
+        settings: {
+          slidesToShow: 1, // Show 1 slide at a time on mobile
           slidesToScroll: 1,
         },
       },
@@ -48,7 +62,7 @@ export default function TruckModelsCarousel() {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-white py-12">
       <div className="container mx-auto">
         {/* Carousel */}
         <Slider {...settings}>
@@ -59,7 +73,7 @@ export default function TruckModelsCarousel() {
                 <img
                   src={truck.image} // Dynamically load the image
                   alt={truck.name}
-                  className="w-[320px] h-60 sm:w-[360px] object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black bg-opacity-50 group-hover:bg-opacity-30 transition-all duration-300"></div>

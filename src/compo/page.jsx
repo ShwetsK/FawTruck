@@ -25,6 +25,7 @@ import TruckModelsCarousel from "./TruckModelsCarousel";
 import { useInView } from 'react-intersection-observer';
 import img2 from '../assets/Frame.png'
 import React from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 
 export default function Home() {
@@ -37,6 +38,34 @@ export default function Home() {
 const { ref: rightRef, inView: rightInView } = useInView({
   triggerOnce: false,
 });
+
+const [inView, setInView] = useState(false);
+  const lefttRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Trigger animation on entering or leaving the viewport
+        if (entry.isIntersecting) {
+          setInView(true); // When the element comes into view, trigger animation
+        } else {
+          setInView(false); // When the element goes out of view, reset animation
+        }
+      },
+      { threshold: 0.1 } // Trigger animation when 10% of the element is visible
+    );
+
+    if (leftRef.current) {
+      observer.observe(leftRef.current);
+    }
+
+    return () => {
+      if (leftRef.current) {
+        observer.unobserve(leftRef.current);
+      }
+    };
+  }, []);
+
   return (
     <main className="min-h-screen">
       {/* Hero Section with carousel */}
@@ -118,98 +147,98 @@ const { ref: rightRef, inView: rightInView } = useInView({
       <div className="container grid grid-cols-1 md:grid-cols-[2fr,3fr] gap-8">
         {/* Left Side - Contact Form */}
         <div
-          ref={leftRef}
-          className={`bg-white px-6 pb-6 md:px-8 md:pb-8 transition-all duration-1000 transform ${
-            leftInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-          }`}
-          style={{ margin: '30px 0 30px 0px' }}
-        >
-          <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
-          <p className="text-gray-600 mb-6 leading-relaxed">
-            Our contact experts will help you with the choice of transport and
-            advice on issues of interest.
-          </p>
-          <form className="space-y-4">
-            <input
-              type="text"
-              placeholder="Al Shamel Commercial Vehicles"
-              className="w-full border-b border-gray-300 focus:border-blue-500 focus:outline-none px-4 py-2"
-            />
-            <select className="w-full border-b border-gray-300 focus:border-blue-500 focus:outline-none px-4 py-2">
-              <option value="saudi-arabia">Saudi Arabia</option>
-              <option value="uae">UAE</option>
-              <option value="qatar">Qatar</option>
-            </select>
-            <div className="flex items-center gap-2">
-              <span className="text-xl">🇸🇦</span>
-              <input
-                type="tel"
-                placeholder="+966 55 280 3657"
-                className="w-full border-b border-gray-300 focus:border-blue-500 focus:outline-none px-4 py-2"
-              />
-            </div>
-            <textarea
-              placeholder="Message"
-              className="w-full border-b border-gray-300 focus:border-blue-500 focus:outline-none px-4 py-2 h-24"
-            ></textarea>
-            <button className="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800">
-              SEND
-            </button>
-          </form>
+      ref={leftRef}
+      className={`bg-white px-6 pb-6 md:px-8 md:pb-8 transform transition-all duration-1000 ${
+        inView ? 'opacity-100 translate-y-0' : 'opacity-100 translate-y-0' // Debugging: Keep it always visible
+      }`}
+      style={{ margin: '30px 0 30px 0px' }}
+    >
+      <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
+      <p className="text-gray-600 mb-6 leading-relaxed">
+        Our contact experts will help you with the choice of transport and
+        advice on issues of interest.
+      </p>
+      <form className="space-y-4">
+        <input
+          type="text"
+          placeholder="Al Shamel Commercial Vehicles"
+          className="w-full border-b border-gray-300 focus:border-blue-500 focus:outline-none px-4 py-2"
+        />
+        <select className="w-full border-b border-gray-300 focus:border-blue-500 focus:outline-none px-4 py-2">
+          <option value="saudi-arabia">Saudi Arabia</option>
+          <option value="uae">UAE</option>
+          <option value="qatar">Qatar</option>
+        </select>
+        <div className="flex items-center gap-2">
+          <span className="text-xl">🇸🇦</span>
+          <input
+            type="tel"
+            placeholder="+966 55 280 3657"
+            className="w-full border-b border-gray-300 focus:border-blue-500 focus:outline-none px-4 py-2"
+          />
         </div>
+        <textarea
+          placeholder="Message"
+          className="w-full border-b border-gray-300 focus:border-blue-500 focus:outline-none px-4 py-2 h-24"
+        ></textarea>
+        <button className="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800">
+          SEND
+        </button>
+      </form>
+    </div>
+
 
         {/* Right Side - Info Section */}
         <div
-          ref={rightRef}
-          className={`bg-black text-white p-6 md:p-8 max-w-[500px] mx-auto transition-all duration-1000 transform ${
-            rightInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-          }`}
-          style={{ margin: '30px 0' }}
-        >
-          <h3 className="text-4xl font-bold">Info</h3>
-          <div className="space-y-12 mt-6">
-            <div className="flex items-center gap-3">
-              <svg
-                className="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M2.94 3.87A8 8 0 0116.12 17.06l-1.4-1.4a2.4 2.4 0 00-3.4-3.4l-1.38 1.38a8.3 8.3 0 01-1.4-.84l-1.42-1.42a8.3 8.3 0 01-.84-1.4l1.38-1.38a2.4 2.4 0 00-3.4-3.4l-1.4-1.4z" />
-              </svg>
-              <span>rasheed.hassan@fakhro.com</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <svg
-                className="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M2 3a2 2 0 012-2h12a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V3z" />
-              </svg>
-              <span>+966 55 280 3657</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <svg
-                className="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5z" />
-              </svg>
-              <span>313, Dahiyah King Fahd, Dammam 32314, Saudi Arabia</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <svg
-                className="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M4.6 3.6A2.6 2.6 0 012 6.2v7.6a2.6 2.6 0 012.6 2.6h7.6a2.6 2.6 0 012.6-2.6V6.2A2.6 2.6 0 0112.2 3.6H4.6z" />
-              </svg>
-              <span>Sun - Thu : 08:00 AM - 05:00 PM</span>
-            </div>
-          </div>
-        </div>
+  ref={rightRef}
+  className="bg-black text-white p-6 md:p-8 max-w-[500px] mx-auto"
+  style={{ margin: '30px 0' }}
+>
+  <h3 className="text-4xl font-bold">Info</h3>
+  <div className="space-y-12 mt-6">
+    <div className="flex items-center gap-3">
+      <svg
+        className="w-5 h-5"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path d="M2.94 3.87A8 8 0 0116.12 17.06l-1.4-1.4a2.4 2.4 0 00-3.4-3.4l-1.38 1.38a8.3 8.3 0 01-1.4-.84l-1.42-1.42a8.3 8.3 0 01-.84-1.4l1.38-1.38a2.4 2.4 0 00-3.4-3.4l-1.4-1.4z" />
+      </svg>
+      <span>rasheed.hassan@fakhro.com</span>
+    </div>
+    <div className="flex items-center gap-3">
+      <svg
+        className="w-5 h-5"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path d="M2 3a2 2 0 012-2h12a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V3z" />
+      </svg>
+      <span>+966 55 280 3657</span>
+    </div>
+    <div className="flex items-center gap-3">
+      <svg
+        className="w-5 h-5"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5z" />
+      </svg>
+      <span>313, Dahiyah King Fahd, Dammam 32314, Saudi Arabia</span>
+    </div>
+    <div className="flex items-center gap-3">
+      <svg
+        className="w-5 h-5"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path d="M4.6 3.6A2.6 2.6 0 012 6.2v7.6a2.6 2.6 0 012.6 2.6h7.6a2.6 2.6 0 012.6-2.6V6.2A2.6 2.6 0 0112.2 3.6H4.6z" />
+      </svg>
+      <span>Sun - Thu : 08:00 AM - 05:00 PM</span>
+    </div>
+  </div>
+</div>
+
       </div>
 
       {/* Social Links */}

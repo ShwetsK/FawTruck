@@ -138,7 +138,7 @@ function Footer() {
             <footer className="bg-black text-white py-4">
                 <div className="container mx-auto px-4 flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-6">
                     <p className="text-sm text-center">
-                        ©2023 CHINA FAW GROUP IMPORT & EXPORT CO., LTD.
+                        ©2024 Al shamel trading
                     </p>
                     <a
                         href="#"

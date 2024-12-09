@@ -31,10 +31,10 @@ function About() {
                 }}
             >
                 {/* Overlay for dimming background */}
-                <div className="absolute inset-0 bg-green-950 opacity-80 z-0"></div>
+                <div className="absolute inset-0 bg-black opacity-80 z-0"></div>
 
                 {/* Green Div - Reduced size on small screens */}
-                <div className="absolute top-0 right-0 w-[100px] h-[100px] bg-green-600 md:w-[150px] md:h-[150px] md:top-0 md:right-0 z-30"></div>
+                <div className="absolute top-0 right-0 w-[100px] h-[100px] bg-green-800 md:w-[150px] md:h-[150px] md:top-0 md:right-0 z-30"></div>
 
                 <div className="container mx-auto px-4 relative z-10">
                     {/* Main Grid Container */}
@@ -90,8 +90,9 @@ function About() {
                             </button>
                         </motion.div>
                     </div>
-                    {/* Blue Div - Bottom left on larger screens */}
-                    <div className="absolute bottom-[-41.7%] left-0 w-[50px] h-[50px] bg-blue-900 z-10"></div>
+                    {/* Blue Div - Bottom left corner */}
+<div className="absolute -bottom-40 left-0 w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] md:w-[60px] md:h-[60px] bg-blue-900 z-10"></div>
+
                 </div>
             </section>
         </div>
