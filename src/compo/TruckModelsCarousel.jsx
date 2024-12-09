@@ -62,29 +62,30 @@ export default function TruckModelsCarousel() {
   };
 
   return (
-    <div className="bg-white py-12">
+    <div className="bg-white py-8">
       <div className="container mx-auto">
         {/* Carousel */}
         <Slider {...settings}>
-          {truckModels.map((truck, index) => (
-            <div key={index} className="p-4">
-              <div className="relative bg-gray-900 rounded-lg overflow-hidden group">
-                {/* Truck Image */}
-                <img
-                  src={truck.image} // Dynamically load the image
-                  alt={truck.name}
-                  className="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black bg-opacity-50 group-hover:bg-opacity-30 transition-all duration-300"></div>
-                {/* Truck Name */}
-                <h3 className="absolute inset-x-0 bottom-4 text-center text-white text-lg font-semibold">
-                  {truck.name}
-                </h3>
-              </div>
+        {truckModels.map((truck, index) => (
+          <div key={index} >
+            <div className="relative bg-gray-900 rounded-lg overflow-hidden group max-w-xs mx-auto">
+              {/* Truck Image */}
+              <img
+                src={truck.image} // Dynamically load the image
+                alt={truck.name}
+                className="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black bg-opacity-50 group-hover:bg-opacity-30 transition-all duration-300"></div>
+              {/* Truck Name */}
+              <h3 className="absolute inset-x-0 bottom-4 text-center text-white text-lg font-semibold">
+                {truck.name}
+              </h3>
             </div>
-          ))}
-        </Slider>
+          </div>
+        ))}
+      </Slider>
+      
       </div>
     </div>
   );
