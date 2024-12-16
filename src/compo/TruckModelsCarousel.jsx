@@ -68,10 +68,10 @@ export default function TruckModelsCarousel() {
         <Slider {...settings}>
         {truckModels.map((truck, index) => (
           <div key={index} >
-            <div className="relative bg-gray-900 rounded-lg overflow-hidden group max-w-xs mx-auto">
+            <div className="relative bg-gray-900 rounded-lg overflow-hidden group max-w-lg mx-auto">
               {/* Truck Image */}
               <img
-                src={truck.image} // Dynamically load the image
+                src= "../../../../" // Dynamically load the image
                 alt={truck.name}
                 className="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300"
               />
@@ -90,3 +90,4 @@ export default function TruckModelsCarousel() {
     </div>
   );
 }
+ 

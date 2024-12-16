@@ -115,15 +115,17 @@ function Footer() {
 
     </div>
     <a
-    href="#"
-    className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 flex items-center justify-between rounded-full transition-all shadow-md ml-auto"
->
+    href="https://wa.me/1234567890" // Replace with your WhatsApp number in the format wa.me/<number>
+    target="_blank"
+    rel="noopener noreferrer"
+    className="fixed bottom-4 right-4 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 flex items-center justify-center hover:bg-green-600 text-white rounded-full transition-all shadow-lg"
+  >
     <img
-        src={img2}
-        alt="WhatsApp Logo"
-        className="h-8 md:h-10 lg:h-12"
+      src={img2}
+      alt="WhatsApp Logo"
+      className="h-8 md:h-10 lg:h-12"
     />
-</a>
+  </a>
 
 
 
@@ -138,7 +140,7 @@ function Footer() {
             <footer className="bg-black text-white py-4">
                 <div className="container mx-auto px-4 flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-6">
                     <p className="text-sm text-center">
-                        ©2024 Al shamel trading
+                        ©2024 Al Shamel Commercial Vehicle Company
                     </p>
                     <a
                         href="#"
